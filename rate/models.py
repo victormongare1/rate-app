@@ -27,3 +27,7 @@ class Review(models.Model):
     '''
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     project_id=models.ForeignKey(Project, on_delete=models.CASCADE,null=True)
+    comment=models.TextField(blank=True)
+    design=models.IntegerField()
+    usability=models.IntegerField()
+    content=models.IntegerField()
