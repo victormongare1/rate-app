@@ -25,14 +25,20 @@ class ProjectTestClass(TestCase):
     '''
     def setUp(self):
         self.profile=Profile(user="victor",profile_pic="pic",bio="person",contacts="vicmongz254@gmail.com")
-        self.project=Project(image="image",title="image",name="nice",link='https;//image',profile=self.profile)
+        self.project=Project(image="image",title="image",description="nice",link='https;//image',profile=self.profile)
+
     def test_save_method(self):
         self.project.save_project()
         images = Image.objects.all()
         self.assertTrue(len(images) > 0) 
 
+    def test_search_method(self):
+        self.assertQuerysetEqual(Project.objects.filter(title__icontains='image'), ["<Project: image>"])  
+          
     def test_delete_method(self):
         self.project.delete_project()
         images=Image.objects.all()
-        self.assertTrue(len(images) === 0)        
+        self.assertTrue(len(images) === 0) 
+
+           
 

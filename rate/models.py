@@ -34,6 +34,19 @@ class Project(models.Model):
     link=models.CharField(max_length = 100)
     profile=models.ForeignKey(Profile,on_delete=models.CASCADE)
 
+    def save_project(self):
+        '''
+        method to save object to database
+        '''
+        self.save()
+
+    def delete_project(self):
+        '''
+        method to delete object from database
+        '''
+        self.delete()    
+
+
     @classmethod
     def search_by_title(cls,search_term):
         '''
