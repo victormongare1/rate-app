@@ -79,7 +79,7 @@ def new_post(request):
 
 
 @login_required(login_url='/accounts/login/')  
-def one_image(request, proj_id):
+def single_post(request, proj_id):
     project = Project.objects.get(pk=proj_id)
     reviews = Review.objects.filter(project_id=proj_id).all()
     current_user = request.user
