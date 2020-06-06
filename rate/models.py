@@ -23,8 +23,11 @@ class Project(models.Model):
 
     @classmethod
     def search_by_title(cls,search_term):
-    project = cls.objects.filter(title__icontains=search_term)
-    return project 
+    '''
+    method that retrieves a project by use of its title
+    '''  
+    projects = cls.objects.filter(title__icontains=search_term)
+    return projects 
 
 class Review(models.Model):
     '''
