@@ -13,7 +13,7 @@ def home():
     view route for home page
     '''
     projects=Project.objects.all()
-    return render(request,{'projects':projects})
+    return render(request,'index.html',{'projects':projects})
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
