@@ -29,16 +29,16 @@ class ProjectTestClass(TestCase):
 
     def test_save_method(self):
         self.project.save_project()
-        images = Image.objects.all()
-        self.assertTrue(len(images) > 0) 
+        projects = Project.objects.all()
+        self.assertTrue(len(projects) > 0) 
 
     def test_search_method(self):
         self.assertQuerysetEqual(Project.objects.filter(title__icontains='image'), ["<Project: image>"])  
-          
+
     def test_delete_method(self):
         self.project.delete_project()
-        images=Image.objects.all()
-        self.assertTrue(len(images) === 0) 
+        projects=Project.objects.all()
+        self.assertTrue(len(projects) === 0) 
 
            
 
