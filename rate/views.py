@@ -51,4 +51,14 @@ def create_profile(request):
             return redirect(home)
     else:
         form = ProfileForm()
-    return render(request, 'create_profile.html',{"form":form})        
+    return render(request, 'create_profile.html',{"form":form})
+
+@login_required(login_url='/accounts/login/')  
+def profile(request,id): 
+    try: 
+        current_user = request.user
+        profile = Profile.objects.filter(user_id=id).all()
+        projects = Project.objects.filter(profile_id=current_user.profile.id).all()
+        return render(request, 'profile.html', {"profile":profile, "projects":projects}) 
+    except User.profile.RelatedObjectDoesNotExist:
+        redirect(create_profile)
