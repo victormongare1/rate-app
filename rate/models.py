@@ -11,6 +11,19 @@ class Profile(models.Model):
     bio=models.CharField(max_length = 100)
     contacts=models.CharField(max_length = 100)
 
+    def save_profile(self):
+        '''
+        method to save profile to database
+        '''
+        self.save()
+    @classmethod
+    def delete_profile(self):
+        '''
+        method to delete profile from database
+        '''
+        self.delete()
+    
+
 class Project(models.Model):
     '''
     project class to define project objects
@@ -23,11 +36,12 @@ class Project(models.Model):
 
     @classmethod
     def search_by_title(cls,search_term):
-    '''
-    method that retrieves a project by use of its title
-    '''  
-    projects = cls.objects.filter(title__icontains=search_term)
-    return projects 
+        '''
+        method that retrieves a project by use of its title
+        '''  
+        projects = cls.objects.filter(title__icontains=search_term)
+        return projects 
+    
 
 class Review(models.Model):
     '''
