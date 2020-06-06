@@ -9,3 +9,12 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         exlcude = ['user']
         fields = ('bio', 'profile_pic','contacts')
+
+class ProjectForm(forms.ModelForm):
+    '''
+    class to define project form
+    '''
+    class Meta:
+        model = Project
+        exlcude = ['user']
+        fields = ('title','description','link','image')        
