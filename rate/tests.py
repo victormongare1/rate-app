@@ -25,14 +25,14 @@ class ProjectTestClass(TestCase):
     '''
     def setUp(self):
         self.profile=Profile(user="victor",profile_pic="pic",bio="person",contacts="vicmongz254@gmail.com")
-        self.image=Image(image="image",name="image",caption="nice",profile=self.profile)
+        self.project=Project(image="image",title="image",name="nice",link='https;//image',profile=self.profile)
     def test_save_method(self):
-        self.image.save_image()
+        self.project.save_project()
         images = Image.objects.all()
         self.assertTrue(len(images) > 0) 
 
-    def test_delete_method(self):L
-        self.image.delete_image()
+    def test_delete_method(self):
+        self.project.delete_project()
         images=Image.objects.all()
-        self.assertTrue(len(images) > 0)        
+        self.assertTrue(len(images) === 0)        
 
