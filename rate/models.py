@@ -44,7 +44,12 @@ class Project(models.Model):
         '''
         method to delete object from database
         '''
-        self.delete()    
+        self.delete()   
+
+    @classmethod
+    def get_project_by_id(cls,project_id):
+        projects=cls.objects.get(id=project_id)
+        return projects     
 
 
     @classmethod

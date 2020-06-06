@@ -75,4 +75,22 @@ def new_post(request):
             return redirect(home)
     else:
         form = ProjectForm()
-    return render(request, 'newpost.html',{"form":form})        
+    return render(request, 'newpost.html',{"form":form})  
+
+
+@login_required(login_url='/accounts/login/')  
+def one_image(request, proj_id):
+    project = Project.objects.get(pk=proj_id)
+    reviews = Review.objects.filter(project_id=proj_id).all()
+    current_user = request.user
+    project = Project.get_project_by_id(proj_id)
+    if request.method=='POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user_id = current_user
+            review.project_id = project
+            review.save()
+    else:
+        form= CommentForm()
+    return render(request,'singlepost.html',{"reviews":reviews,"form":form,"project":project})
