@@ -61,4 +61,18 @@ def profile(request,id):
         projects = Project.objects.filter(profile_id=current_user.profile.id).all()
         return render(request, 'profile.html', {"profile":profile, "projects":projects}) 
     except User.profile.RelatedObjectDoesNotExist:
-        redirect(create_profile)
+        return redirect(create_profile)
+
+@login_required(login_url='/accounts/login/')  
+def new_post(request):
+    current_user = request.user
+    if request.method=='POST':
+        form = ProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.profile = current_user.profile
+            project.save()
+            return redirect(home)
+    else:
+        form = ProjectForm()
+    return render(request, 'newpost.html',{"form":form})        
