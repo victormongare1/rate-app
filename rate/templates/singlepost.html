@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{%block content%}
+
+{{block.super}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card " >
+          <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap" id="">
+          <div class="card-body">
+            <h5 class="card-title">Title: {{project.title}}</h5>
+            <p class="card-text">Description: {{project.description}}</p>
+            <p class="card-text">Posted by: {{project.profile.user.username}}</p>
+            <p class="card-text">link:<a href="{{project.link}}">Click here</a></p>
+      </div> 
+    </div> 
+    <div class="col-md-7">
+      <h3>Review and Rate</h3>
+      <form  action="{%url 'single_post'  image.id%}" method="POST">
+      {%csrf_token%}
+
+      {% bootstrap_form form %}
+      <input type="submit" class="btn btn-primary btn-lg" value="Post">
+    </form>
+  </div> 
+  </div>       
+        <br />
+        <br />
+      
+  {%for review in reviews%}
+    <div class="card ">
+      <div class="card-body">
+        <h5 class="card-title">{{review.project_id.project_name}}</h5>
+        <p class="card-text">Design:{{review.design}}  Usability:{{review.usability}} Content:{{review.content}}</p>
+        <p class="card-text">{{review.comment}}</p>
+        <p class="card-text">Posted by:{{review.user_id.username}}</p>
+      </div>  
+    </div>
+
+
+  {%endfor%}  
+</div> 
+{% endblock %}
