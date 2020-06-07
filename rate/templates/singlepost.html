@@ -22,6 +22,7 @@
       </div> 
     </div> 
     <div class="col-md-6">
+      <div class="card">
       <h3>Review and Rate</h3>
       <form  action="{%url 'project'  project.id%}" method="POST">
       {%csrf_token%}
@@ -29,12 +30,14 @@
       {% bootstrap_form form %}
       <input type="submit" class="btn btn-primary btn-lg" value="Post">
       </form>
+      </div>
     </div> 
   </div>       
         <br />
         <br />
-      
+  <div class="row">
   {%for review in reviews%}
+  <div class="col-md-6">
     <div class="card ">
       <div class="card-body">
         <h4 class="card-text">Design:{{review.design}}  Usability:{{review.usability}}   Content:{{review.content}}<br> Overall:{{review.overall_score}}</h4>
@@ -43,7 +46,8 @@
       </div>  
     </div>
 
-
+    </div>
   {%endfor%}  
+  </div>
 </div> 
 {% endblock %}
