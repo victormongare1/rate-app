@@ -66,8 +66,9 @@ class Review(models.Model):
     review class to define review objects
     '''
     user_id = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
-    project_id=models.ForeignKey(Project, on_delete=models.CASCADE,null=True)
+    project_id=models.ForeignKey(Project,on_delete=models.CASCADE,null=True)
     comment=models.TextField(blank=True)
     design=models.PositiveIntegerField()
     usability=models.PositiveIntegerField()
     content=models.PositiveIntegerField()
+    overall_score=models.PositiveIntegerField(null=True)

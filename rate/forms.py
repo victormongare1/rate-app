@@ -24,6 +24,6 @@ class ReviewForm(forms.ModelForm):
     class to define Review form
     '''
     class Meta:
-        model = Profile
-        exlcude = ['user','project']
+        model = Review
+        exlcude = ['user','project','overall_score']
         fields = ('comment','design','usability','content')               

@@ -8,7 +8,7 @@
   <title>Rate-App</title>
 </head>
 <body>
-<nav class="navbar sticky-top navbar-expand-lg navbar-light" id="navbar">
+<nav class="navbar navbar-fixed-top navbar-light" id="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="{% url 'home' %}" id="home">Rate-App</a>
@@ -28,7 +28,8 @@
     </div>
     <!-- search form end -->
     
-    <div class="col-sm-4 col-md-4 navbar-right">
+    
+    <div class="col-sm-2 col-md-2 navbar-right">
       {% if user.is_authenticated %}
       <ul>
         <ul class="dropdown">
@@ -57,7 +58,9 @@
       {% endif %}
     </div> 
     <!-- Adding a search form  -->
-   
+    <div class="col-sm-1 col-md-1 navbar-right">
+      <h4>{{user.username}}</h4>
+    </div>
   </div>
 </nav>
 </body>

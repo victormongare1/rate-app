@@ -7,14 +7,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializer import ProfileSerializer,ProjectSerializer
 from .forms import ProfileForm,ProjectForm,ReviewForm
+from django.http import HttpResponseRedirect
+
 # Create your views here.
 @login_required(login_url='/accounts/login/')
-def home():
+def home(request):
     '''
     view route for home page
     '''
-    projects=Project.objects.all()
-    return render(request,'index.html',{'projects':projects})
+    posts=Project.objects.all()
+    return render(request,'index.html',{"posts":posts})
 
 @login_required(login_url='/accounts/login/')
 def search_results(request):
@@ -90,7 +92,9 @@ def single_post(request, proj_id):
             review = form.save(commit=False)
             review.user_id = current_user
             review.project_id = project
+            review.overall_score = (review.design+review.usability+review.content)//3
             review.save()
+            
     else:
-        form= CommentForm()
+        form=ReviewForm()
     return render(request,'singlepost.html',{"reviews":reviews,"form":form,"project":project})

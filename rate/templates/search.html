@@ -5,6 +5,8 @@
 {{block.super}}
 
 <div class="container">
+  <br>
+  <br>
   <div class="row">
       {% if projects%}
       <h2>Found {{ projects|length }} under the title {{message}}</h2>
@@ -16,14 +18,20 @@
 
   <div class="row">
     {%for project in projects%}
-        <div class="card mt-4 mx-auto" style="width: 20rem; margin-right: auto;">
-          <img class="card-img-top" src="{project.image.url}}" alt="Card image cap">
+        <div class="col-md-4" >
+          <div class="card">
+          <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap" style="width:100%;max-width:350px;padding-top:10px;height: 250px;">
           <div class="card-body">
             <h5 class="card-title">Title: {{project.title}}</h5>
-            <p class="card-text">Link: {{project.link}}</p>
+            <p class="card-text">Description: {{project.description}}</p>
+            <p class="card-text">Link:<a href="{{project.link}}">View website here</a></p>
+          </div>
           </div>
         </div>
     
     {%endfor%}
 
+
   </div>
+  </div>
+  {%endblock%}
