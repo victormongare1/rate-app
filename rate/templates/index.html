@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{%block content%}
+
+{{block.super}}
+<div class="container">
+  {%if posts%}
+  {% for project in projects %}
+    <div class="col-xs-8 ">
+      <div class="card">
+      <img src="{{project.image.url}}"  class="img-responsive"  id="homeimages" >
+    
+      <a href="{% url 'single_post' project.id%}"><button class="btn-xs btn-primary">More</button> </a>
+      </div>  
+    </div>
+    <br />
+  {% endfor%}   
+  {% else%} 
+  <h1>There are no projects posted</h1>
+  {% endif %}
+    
+</div>
+
+
+{% endblock %}
