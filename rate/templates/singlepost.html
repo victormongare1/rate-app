@@ -15,16 +15,16 @@
           <img class="card-img-top" src="{{project.image.url}}" alt="Card image cap" style="width:100%;max-width:570px;padding-top:10px;height: 300px;">
           <div class="card-body">
             
-            <h3 class="card-text">Description: {{project.description}}</h3>
+            <h3 class="card-text">{{project.description}}</h3>
             <h3 class="card-text">Posted by: {{project.profile.user.username}}</h3>
-            <h3 class="card-text">link:<a href="{{project.link}}">Click here</a></h3>
+            <h3 class="card-text"><a href="{{project.link}}">Click here to view live site</a></h3>
           </div>  
       </div> 
     </div> 
     <div class="col-md-6">
       <div class="card">
       <h3>Review and Rate</h3>
-      <form  action="{%url 'project'  project.id%}" method="POST">
+      <form  action="{%url 'project'  project.id%}" method="POST" id="reviewform">
       {%csrf_token%}
 
       {% bootstrap_form form %}
@@ -50,4 +50,9 @@
   {%endfor%}  
   </div>
 </div> 
+{% endblock %}
+{% block scripts %} 
+  {{block.super}}
+  {% load staticfiles %}
+  <script type="text/javascript" src="{%static 'js/index.js'%}"></script>
 {% endblock %}
